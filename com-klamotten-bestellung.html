@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>COM Kleidung – Bestellung</title>
+  <style>
+    :root {
+      --magenta: #e20074;
+      --bg: #f7f7f8;
+      --card: #ffffff;
+      --text: #1a1a1a;
+      --muted: #6b7280;
+      --border: #e5e7eb;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji",
+        "Segoe UI Emoji", "Segoe UI Symbol";
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.45;
+    }
+    header {
+      background: var(--card);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 24px 16px;
+    }
+    h1 {
+      margin: 0 0 8px;
+      font-size: 24px;
+      letter-spacing: 0.2px;
+    }
+    .badge {
+      display: inline-block;
+      padding: 4px 8px;
+      border-radius: 999px;
+      background: rgba(226, 0, 116, 0.1);
+      color: var(--magenta);
+      font-weight: 600;
+      font-size: 12px;
+      margin-right: 8px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 16px;
+    }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 16px;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.02);
+    }
+    .col-12 { grid-column: span(12); }
+    .col-6 { grid-column: span(6); }
+    .col-4 { grid-column: span(4); }
+    .col-3 { grid-column: span(3); }
+    @media (max-width: 900px) {
+      .col-6, .col-4, .col-3 { grid-column: span(12); }
+    }
+    label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+    input[type="text"], input[type="email"], input[type="number"], select, textarea {
+      width: 100%;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 10px 12px;
+      font-size: 14px;
+      background: white;
+    }
+    input[type="number"] { text-align: right; }
+    .row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    @media (max-width: 700px) { .row { grid-template-columns: 1fr; } }
+    .muted { color: var(--muted); font-size: 12px; }
+    .price {
+      color: var(--magenta);
+      font-weight: 800;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 8px;
+    }
+    th, td {
+      border-bottom: 1px solid var(--border);
+      padding: 8px 6px;
+      text-align: center;
+      font-size: 14px;
+    }
+    th { background: #fafafa; font-weight: 700; }
+    tfoot td { font-weight: 800; }
+    .actions { display: flex; gap: 12px; flex-wrap: wrap; }
+    button, .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px 14px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: var(--card);
+      cursor: pointer;
+      font-weight: 700;
+    }
+    button.primary {
+      background: var(--magenta);
+      color: white;
+      border-color: var(--magenta);
+    }
+    .pill {
+      border: 1px dashed var(--border);
+      padding: 8px 10px;
+      border-radius: 12px;
+      background: #fff;
+      font-size: 13px;
+    }
+    .hr { height: 1px; background: var(--border); margin: 16px 0; }
+    .footer-note { font-size: 12px; color: var(--muted); }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <span class="badge">COM</span>
+      <span class="badge">Preis: <span class="price">30&nbsp;€</span> pro Stück inkl. Versand</span>
+      <h1>Bestellung – COM Kleidung</h1>
+      <div class="muted">Polo-Shirt, Sweater, Hoodie, Strickpullover – Branding gemäß Produktionsvorgaben.</div>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="grid">
+      <section class="card col-8">
+        <h2 style="margin-top:0">1) Artikel & Größen</h2>
+
+        <div class="row">
+          <div>
+            <label for="artikel">Artikel</label>
+            <select id="artikel">
+              <option value="Polo-Shirt (Stick) – Damen">Polo-Shirt (Stick) – Damen</option>
+              <option value="Polo-Shirt (Stick) – Herren">Polo-Shirt (Stick) – Herren</option>
+              <option value="Sweater (Flockdruck)">Sweater (Flockdruck)</option>
+              <option value="Hoodie (Druck)">Hoodie (Druck)</option>
+              <option value="Strickpullover (Stick)">Strickpullover (Stick)</option>
+            </select>
+            <div class="muted">Logo: linke Brust; Ärmel links T‑Logo; teils zusätzlicher Rücken‑Druck (Sweater/Hoodie).</div>
+          </div>
+          <div>
+            <label for="farbe">Farbe (optional)</label>
+            <input type="text" id="farbe" placeholder="z. B. Schwarz / Anthrazit – falls wählbar">
+          </div>
+        </div>
+
+        <div class="hr"></div>
+
+        <div>
+          <label>Größen & Mengen</label>
+          <div class="muted">Bitte pro Größe die gewünschte Stückzahl eintragen.</div>
+          <table>
+            <thead>
+              <tr>
+                <th>Größe</th>
+                <th>XS</th>
+                <th>S</th>
+                <th>M</th>
+                <th>L</th>
+                <th>XL</th>
+                <th>XXL</th>
+                <th>3XL</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Menge</td>
+                <td><input type="number" min="0" value="0" id="g_xs" /></td>
+                <td><input type="number" min="0" value="0" id="g_s" /></td>
+                <td><input type="number" min="0" value="0" id="g_m" /></td>
+                <td><input type="number" min="0" value="0" id="g_l" /></td>
+                <td><input type="number" min="0" value="0" id="g_xl" /></td>
+                <td><input type="number" min="0" value="0" id="g_xxl" /></td>
+                <td><input type="number" min="0" value="0" id="g_3xl" /></td>
+              </tr>
+            </tbody>
+            <tfoot>
+              <tr>
+                <td>Summe</td>
+                <td colspan="7" id="summe_sizes">0</td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+
+        <div class="hr"></div>
+
+        <div class="row">
+          <div>
+            <label for="bemerkungen">Besondere Hinweise</label>
+            <textarea id="bemerkungen" rows="3" placeholder="z. B. Deadline, Anprobe, Branding-Hinweise, abweichende Lieferadressen etc."></textarea>
+          </div>
+          <div>
+            <div class="pill">
+              <strong>Branding (Info):</strong><br/>
+              • Linke Brust: COM-Logo (je nach Artikel 49,5–74 × 20–30 mm)<br/>
+              • Linker Ärmel: T‑Logo (16,8–25,2 × 20–30 mm)<br/>
+              • Rücken (nur Sweater/Hoodie): 250 × 101 mm
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <aside class="card col-4">
+        <h2 style="margin-top:0">2) Empfänger & Absender</h2>
+        <label for="name">Name</label>
+        <input type="text" id="name" placeholder="Vor- und Nachname" required />
+
+        <label for="org">Organisation/Team</label>
+        <input type="text" id="org" placeholder="z. B. COM Live Communications" />
+
+        <div class="row">
+          <div>
+            <label for="email">E‑Mail (für Rückfragen)</label>
+            <input type="email" id="email" placeholder="vorname.nachname@telekom.de" />
+          </div>
+          <div>
+            <label for="telefon">Telefon</label>
+            <input type="text" id="telefon" placeholder="+49 …" />
+          </div>
+        </div>
+
+        <label for="adresse">Lieferadresse</label>
+        <textarea id="adresse" rows="3" placeholder="Firma, Straße, PLZ Ort"></textarea>
+
+        <div class="hr"></div>
+        <div class="row">
+          <div>
+            <div class="muted">Preis pro Stück inkl. Versand</div>
+            <div class="price" style="font-size:20px;">30,00&nbsp;€</div>
+          </div>
+          <div>
+            <div class="muted">Gesamtmenge</div>
+            <div id="gesamtmenge" style="font-weight:800;">0</div>
+          </div>
+        </div>
+        <div class="row" style="margin-top:8px;">
+          <div>
+            <div class="muted">Zwischensumme</div>
+            <div id="zwischensumme" style="font-weight:800;">0,00&nbsp;€</div>
+          </div>
+          <div>
+            <div class="muted">Versand</div>
+            <div style="font-weight:800;">inklusive</div>
+          </div>
+        </div>
+
+        <div class="hr"></div>
+        <div class="actions">
+          <button class="primary" id="btnMail">Bestellung per E‑Mail öffnen</button>
+          <button id="btnCopy">Zusammenfassung kopieren</button>
+          <button id="btnTxt">Als TXT speichern</button>
+        </div>
+        <p class="footer-note" style="margin-top:8px;">
+          Der Button öffnet eine voradressierte E‑Mail an eins60 in Ihrem E‑Mail‑Programm. Bitte prüfen, ggf. ergänzen und absenden.
+        </p>
+      </aside>
+    </div>
+
+    <div class="card col-12" style="margin-top:16px;">
+      <h3 style="margin-top:0">Vorschau Bestellung</h3>
+      <pre id="preview" style="white-space:pre-wrap;font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,'Liberation Mono','Courier New', monospace;background:#fafafa;border:1px solid var(--border);border-radius:12px;padding:12px;max-height:260px;overflow:auto;"></pre>
+    </div>
+  </main>
+
+  <script>
+    const PRICE = 30.0;
+    const sizeIds = ["g_xs","g_s","g_m","g_l","g_xl","g_xxl","g_3xl"];
+    const sizeLabels = ["XS","S","M","L","XL","XXL","3XL"];
+
+    function fmtEuro(n){ return n.toLocaleString('de-DE',{style:'currency',currency:'EUR'}); }
+
+    function getValues(){
+      const artikel = document.getElementById('artikel').value;
+      const farbe = document.getElementById('farbe').value.trim();
+      const bemerkungen = document.getElementById('bemerkungen').value.trim();
+
+      const sizes = {};
+      let totalQty = 0;
+      sizeIds.forEach((id, idx) => {
+        const v = parseInt(document.getElementById(id).value || "0", 10);
+        if(!isNaN(v) && v > 0){ sizes[sizeLabels[idx]] = v; totalQty += v; }
+      });
+
+      const name = document.getElementById('name').value.trim();
+      const org = document.getElementById('org').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const telefon = document.getElementById('telefon').value.trim();
+      const adresse = document.getElementById('adresse').value.trim();
+
+      return { artikel, farbe, bemerkungen, sizes, totalQty, name, org, email, telefon, adresse };
+    }
+
+    function buildSummary(){
+      const v = getValues();
+      const lines = [];
+      lines.push("COM Kleidung – Bestellung");
+      lines.push("Artikel: " + v.artikel + (v.farbe ? " | Farbe: " + v.farbe : ""));
+      lines.push("—");
+      lines.push("Größen & Mengen:");
+      if(Object.keys(v.sizes).length === 0){ lines.push("  (keine Größen/Mengen eingetragen)"); }
+      else {
+        Object.entries(v.sizes).forEach(([size, qty]) => lines.push("  " + size + ": " + qty + " St."));
+      }
+      lines.push("—");
+      lines.push("Gesamtmenge: " + v.totalQty + " St.");
+      lines.push("Preis pro Stück (inkl. Versand): " + fmtEuro(PRICE));
+      lines.push("Gesamtsumme: " + fmtEuro(v.totalQty * PRICE));
+      if(v.bemerkungen){ lines.push("—"); lines.push("Hinweise: " + v.bemerkungen); }
+      lines.push("—");
+      lines.push("Lieferadresse:");
+      lines.push(v.adresse || "(bitte ergänzen)");
+      lines.push("—");
+      lines.push("Besteller: " + (v.name || "(Name)"));
+      if(v.org) lines.push("Organisation/Team: " + v.org);
+      if(v.email) lines.push("E‑Mail: " + v.email);
+      if(v.telefon) lines.push("Telefon: " + v.telefon);
+      lines.push("—");
+      lines.push("Bitte gemäß Produktionsvorgaben (Brust/Ärmel, ggf. Rücken) fertigen.");
+      return lines.join("\n");
+    }
+
+    function updateTotals(){
+      const v = getValues();
+      document.getElementById('summe_sizes').textContent = v.totalQty;
+      document.getElementById('gesamtmenge').textContent = v.totalQty;
+      document.getElementById('zwischensumme').textContent = fmtEuro(v.totalQty * PRICE);
+      document.getElementById('preview').textContent = buildSummary();
+    }
+
+    // Recompute on input
+    document.querySelectorAll('input, select, textarea').forEach(el => {
+      el.addEventListener('input', updateTotals);
+      el.addEventListener('change', updateTotals);
+    });
+    updateTotals();
+
+    function encodeRFC3986(s){ return encodeURIComponent(s).replace(/[!'()*]/g, c => '%' + c.charCodeAt(0).toString(16)); }
+
+    document.getElementById('btnMail').addEventListener('click', () => {
+      const v = getValues();
+      if(!v.totalQty){
+        alert("Bitte mindestens 1 Stück eintragen.");
+        return;
+      }
+      if(!v.name){
+        alert("Bitte Name eintragen.");
+        return;
+      }
+      const to = "florenzia.semkat@eins60.com";
+      const subj = `COM Kleidung Bestellung – ${v.artikel} – ${v.name}${v.org ? " ("+v.org+")" : ""}`;
+      const body = buildSummary();
+      const href = `mailto:${to}?subject=${encodeRFC3986(subj)}&body=${encodeRFC3986(body)}`;
+      window.location.href = href;
+    });
+
+    document.getElementById('btnCopy').addEventListener('click', async () => {
+      const text = buildSummary();
+      try {
+        await navigator.clipboard.writeText(text);
+        alert("Zusammenfassung in die Zwischenablage kopiert.");
+      } catch(e){
+        alert("Kopieren nicht möglich. Markieren Sie den Text und kopieren Sie manuell.");
+      }
+    });
+
+    document.getElementById('btnTxt').addEventListener('click', () => {
+      const blob = new Blob([buildSummary()], {type: "text/plain;charset=utf-8"});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = "COM-Kleidung-Bestellung.txt";
+      document.body.appendChild(a);
+      a.click();
+      setTimeout(() => { URL.revokeObjectURL(url); a.remove(); }, 100);
+    });
+  </script>
+</body>
+</html>
