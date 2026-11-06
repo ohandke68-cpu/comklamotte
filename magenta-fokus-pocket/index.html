@@ -88,6 +88,13 @@ section{padding-block:88px}
 .arena .sec-head p{color:#A9A9B6}
 .arena .sec-head .eyebrow{color:#FF5AAE}
 .sim{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:28px;align-items:start}
+.venue{margin:0 0 40px;position:relative;container-type:inline-size;border:1px solid #23232D}
+.venue img{display:block;width:100%;height:auto}
+.led{position:absolute;left:60.5%;top:21%;width:35.5%;height:30%;background:radial-gradient(ellipse at 50% 45%,#F0168A 0%,#E2007A 60%,#D40073 100%);box-shadow:0 0 2cqw 1.2cqw #E2007A;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.6cqw;color:#fff;text-align:center}
+.led svg{width:3.4cqw;height:3.4cqw}
+.led b{font-family:var(--f-display);font-weight:900;font-size:6.4cqw;line-height:.9;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.led span{font-family:var(--f-mono);font-weight:600;font-size:1.25cqw;letter-spacing:.14em}
+.venue figcaption{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 20px;padding:12px 16px;font-family:var(--f-mono);font-size:12px;color:#A9A9B6;background:var(--arena-2);border-top:1px solid #23232D}
 .hall{background:var(--arena-2);border:1px solid #23232D;position:relative;min-width:0}
 .hall canvas{display:block;width:100%;height:auto;aspect-ratio:16/10}
 .legend{display:flex;flex-wrap:wrap;gap:8px 20px;padding:12px 16px;border-top:1px solid #23232D;font-family:var(--f-mono);font-size:12px;color:#A9A9B6}
@@ -297,6 +304,11 @@ section{padding-block:88px}
       <div><p class="eyebrow">03 · Live-Simulation</p><h2>So sieht die Arena den Tag</h2></div>
       <p>Jedes Quadrat ist ein Gast mit Handy im Pocket. Jeder blaue Punkt ist ein leuchtendes Display. Zieh die Zeitleiste oder starte den Tag. Rechts siehst du die Fokus-Seite eines Gastes, der weiß umrandet im Saal sitzt.</p>
     </div>
+    <figure class="venue">
+      <img src="arena.jpg" width="1600" height="900" alt="Telekom-Arena mit Rängen, magenta Bühnenlicht und LED-Wänden">
+      <div class="led" aria-hidden="true"><svg><use href="#T"/></svg><b id="ledCount">734 / 800</b><span>SIND GERADE OFFLINE</span></div>
+      <figcaption><span>Setting-Referenz · Telekom-Arena</span><span>Overlay: Live-Zähler auf der Haupt-LED-Wand</span></figcaption>
+    </figure>
     <div class="sim">
       <div class="hall">
         <canvas id="hall" width="1280" height="800" aria-label="Simulation der Arena mit 800 Gästen"></canvas>
@@ -598,7 +610,9 @@ function draw(){
   return off;
 }
 
+const ledCount=document.getElementById('ledCount');
 function updateUI(off){
+  if(state(t).focus) ledCount.textContent=`${off} / 800`;
   const {cyc,m,focus}=state(t);
   const hh=9+Math.floor(t/60),mm=Math.floor(t%60);
   clock.firstChild.nodeValue=`${fmt(hh)}:${fmt(mm)}`;
