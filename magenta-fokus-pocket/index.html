@@ -1,0 +1,659 @@
+<title>Magenta Fokus Pocket</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;700;800;900&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+/* Layout: Telekom-Dramaturgie in Kapiteln. Magenta-Opener mit Studio-Rendering, weiße Info-Kapitel,
+   dunkles Arena-Kapitel als Höhepunkt, Magenta-Signoff. Eine Shape-Familie: Angle (Diagonalkanten). */
+:root{
+  --magenta:#E20074; --magenta-dk:#B4005A; --magenta-deep:#8A0046;
+  --ink:#0E0E12; --white:#FFFFFF; --gray:#6F6F6F; --line:#D9D9D9; --paper:#F4F4F6;
+  --arena:#0A0A0E; --arena-2:#15151C; --phone-blue:#5AB0FF;
+  --f-display:'TeleNeo Office','TeleNeo','Archivo',Arial,sans-serif;
+  --f-body:'TeleNeo Office','TeleNeo','Archivo',Arial,sans-serif;
+  --f-mono:'IBM Plex Mono',ui-monospace,Menlo,monospace;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--white);color:var(--ink);font-family:var(--f-body);font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1180px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--f-display);font-weight:800;text-wrap:balance;margin:0}
+p{margin:0}
+.eyebrow{font-family:var(--f-mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:600}
+.tlogo{display:inline-block;vertical-align:middle}
+:focus-visible{outline:3px solid var(--magenta);outline-offset:3px}
+
+/* TOPBAR */
+.top{background:var(--magenta);color:var(--white)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:14px}
+.brand{display:flex;align-items:center;gap:12px;font-weight:800;letter-spacing:.02em}
+.brand svg{width:34px;height:34px}
+.top .eyebrow{opacity:.85}
+
+/* HERO */
+.hero{background:var(--magenta);color:var(--white);position:relative;overflow:hidden}
+.hero .wrap{display:grid;grid-template-columns:1.05fr 1fr;gap:0;align-items:stretch;min-height:560px}
+.hero-copy{padding-block:56px 64px;display:flex;flex-direction:column;justify-content:center;gap:24px;min-width:0;position:relative;z-index:2}
+.hero h1{font-size:clamp(44px,7.2vw,96px);line-height:.9;letter-spacing:-.02em;font-weight:900}
+.hero h1 span{display:block}
+.hero-lead{font-size:clamp(17px,1.6vw,20px);max-width:30em;line-height:1.5}
+.hero-facts{display:flex;flex-wrap:wrap;gap:10px 28px;font-family:var(--f-mono);font-size:13px}
+.hero-facts b{display:block;font-family:var(--f-display);font-size:28px;font-weight:800;letter-spacing:-.01em}
+.studio{position:relative;min-width:0;background:linear-gradient(160deg,#FAFAFB 0%,#E6E6EA 70%,#D4D4DA 100%);clip-path:polygon(14% 0,100% 0,100% 100%,0 100%);margin-right:calc(-1 * max(20px,env(safe-area-inset-right,0px)))}
+.studio::after{content:"";position:absolute;left:18%;right:6%;bottom:9%;height:26px;background:radial-gradient(ellipse at center,rgba(20,0,10,.28),transparent 70%);filter:blur(4px)}
+.studio svg{position:absolute;inset:4% 0 6% 12%;width:88%;height:90%;z-index:1}
+.studio-tag{position:absolute;right:20px;bottom:16px;font-family:var(--f-mono);font-size:11px;color:var(--gray);z-index:2}
+
+/* SECTIONS */
+section{padding-block:88px}
+.sec-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:24px 56px;align-items:end;margin-bottom:48px}
+.sec-head h2{font-size:clamp(32px,4.4vw,54px);line-height:.98;letter-spacing:-.015em}
+.sec-head p{color:#3a3a40;max-width:38em}
+.sec-head .eyebrow{color:var(--magenta);margin-bottom:14px}
+
+/* OBJEKT */
+.views{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.view{background:var(--paper);border-radius:4px;overflow:hidden;display:flex;flex-direction:column}
+.view .stage{aspect-ratio:4/5;position:relative;background:linear-gradient(170deg,#FBFBFC,#E4E4E8)}
+.view .stage svg{position:absolute;inset:0;width:100%;height:100%}
+.view .cap{padding:18px 20px 22px;display:flex;flex-direction:column;gap:6px}
+.view .cap h3{font-size:19px}
+.view .cap p{font-size:15px;color:#4a4a52}
+.spec{margin-top:36px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid var(--line)}
+.spec div{padding:18px 18px 4px 0;min-width:0}
+.spec dt{font-family:var(--f-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--gray)}
+.spec dd{margin:6px 0 0;font-weight:700;font-size:16px}
+.rule-note{margin-top:28px;display:flex;gap:14px;align-items:flex-start;font-size:15px;color:#3a3a40;max-width:62em}
+.rule-note b{color:var(--ink)}
+.rule-note .chip{flex:0 0 auto;background:var(--magenta);color:#fff;font-family:var(--f-mono);font-size:11px;font-weight:600;padding:4px 8px;letter-spacing:.08em}
+
+/* FLOW */
+.flow{background:var(--paper);clip-path:polygon(0 3vw,100% 0,100% 100%,0 100%);padding-block:calc(88px + 3vw) 88px}
+.steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:14px;counter-reset:s}
+.step{background:var(--white);display:flex;flex-direction:column;min-width:0;position:relative}
+.step .ill{aspect-ratio:1/1;background:var(--white);border-bottom:1px solid var(--line);position:relative}
+.step .ill svg{position:absolute;inset:0;width:100%;height:100%}
+.step .body{padding:14px 14px 18px;display:flex;flex-direction:column;gap:6px}
+.step .when{font-family:var(--f-mono);font-size:11px;color:var(--magenta);font-weight:600;letter-spacing:.06em}
+.step h3{font-size:17px;line-height:1.15}
+.step p{font-size:14px;color:#4a4a52;line-height:1.45}
+.step .num{position:absolute;top:10px;left:10px;font-family:var(--f-mono);font-size:11px;font-weight:600;background:var(--ink);color:#fff;padding:2px 6px;z-index:2}
+.step.peak{background:var(--magenta);color:#fff}
+.step.peak .ill{background:var(--magenta);border-color:rgba(255,255,255,.25)}
+.step.peak p{color:rgba(255,255,255,.9)}
+.step.peak .when{color:#fff}
+
+/* ARENA SIM */
+.arena{background:var(--arena);color:#ECECF1;clip-path:polygon(0 0,100% 3vw,100% 100%,0 100%);padding-block:calc(88px + 3vw) 96px}
+.arena .sec-head p{color:#A9A9B6}
+.arena .sec-head .eyebrow{color:#FF5AAE}
+.sim{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:28px;align-items:start}
+.hall{background:var(--arena-2);border:1px solid #23232D;position:relative;min-width:0}
+.hall canvas{display:block;width:100%;height:auto;aspect-ratio:16/10}
+.legend{display:flex;flex-wrap:wrap;gap:8px 20px;padding:12px 16px;border-top:1px solid #23232D;font-family:var(--f-mono);font-size:12px;color:#A9A9B6}
+.legend i{display:inline-block;width:10px;height:10px;margin-right:7px;vertical-align:-1px}
+.legend .off i{background:var(--magenta)}
+.legend .on i{background:var(--phone-blue);border-radius:50%;box-shadow:0 0 8px var(--phone-blue)}
+.legend .me i{border:2px solid #fff;border-radius:2px}
+
+.phone{width:100%;max-width:300px;margin:0 auto;aspect-ratio:9/18.5;background:#000;border-radius:42px;padding:12px;box-shadow:0 0 0 2px #2a2a33,0 30px 60px rgba(0,0,0,.5)}
+.screen{width:100%;height:100%;border-radius:32px;overflow:hidden;display:flex;flex-direction:column;background:#fff;color:var(--ink);transition:background .4s,color .4s}
+.urlbar{font-family:var(--f-mono);font-size:10.5px;padding:26px 14px 8px;text-align:center;color:#6F6F6F;background:#F1F1F3;border-bottom:1px solid #E2E2E6}
+.app{flex:1;display:flex;flex-direction:column;padding:16px 18px 18px;gap:12px;min-height:0}
+.app-top{display:flex;align-items:center;justify-content:space-between;font-family:var(--f-mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase}
+.app-top svg{width:22px;height:22px}
+.ring{position:relative;flex:1;display:grid;place-items:center;min-height:0}
+.ring svg{width:82%;max-width:200px;height:auto}
+.ring .mid{position:absolute;text-align:center}
+.ring .big{font-family:var(--f-display);font-weight:800;font-size:38px;letter-spacing:-.02em;font-variant-numeric:tabular-nums;line-height:1}
+.ring .sm{font-family:var(--f-mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;margin-top:4px}
+.app-msg{font-size:13.5px;line-height:1.4;text-align:center;min-height:3.9em}
+.app-btn{appearance:none;border:0;border-radius:999px;padding:13px 16px;font-family:var(--f-display);font-weight:800;font-size:15px;cursor:pointer;background:var(--ink);color:#fff}
+.screen.s-focus{background:var(--magenta);color:#fff}
+.screen.s-focus .app-btn{background:#fff;color:var(--magenta)}
+.screen.s-out{background:#1A1A20;color:#fff}
+.screen.s-out .app-btn{background:var(--magenta);color:#fff}
+.screen.s-break{background:#fff;color:var(--ink)}
+
+.timeline{margin-top:28px}
+.tl-head{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}
+.clock{font-family:var(--f-display);font-weight:800;font-size:30px;font-variant-numeric:tabular-nums}
+.clock small{font-family:var(--f-mono);font-size:12px;font-weight:500;color:#A9A9B6;margin-left:10px;letter-spacing:.06em;text-transform:uppercase}
+.play{appearance:none;border:1px solid #3A3A46;background:transparent;color:#fff;font-family:var(--f-mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;padding:9px 14px;cursor:pointer}
+.play:hover{border-color:var(--magenta)}
+.strip-scroll{overflow-x:auto}
+.strip{position:relative;min-width:640px}
+.bars{display:flex;height:46px;gap:2px}
+.bars .f{flex:50;background:var(--magenta);position:relative;cursor:pointer}
+.bars .b{flex:10;background:#2E2E3A;cursor:pointer}
+.bars .f span{position:absolute;left:8px;top:6px;font-size:11px;font-weight:700;line-height:1.15;color:#fff;right:4px;overflow:hidden}
+.bars .f em{position:absolute;left:8px;bottom:5px;font-style:normal;font-family:var(--f-mono);font-size:10px;opacity:.85}
+.ticks{display:flex;justify-content:space-between;font-family:var(--f-mono);font-size:10.5px;color:#7E7E8C;margin-top:6px}
+.strip input[type=range]{position:absolute;inset:0 0 auto 0;height:46px;width:100%;margin:0;opacity:0;cursor:pointer}
+.cursor{position:absolute;top:-6px;width:2px;height:58px;background:#fff;pointer-events:none;box-shadow:0 0 0 3px rgba(255,255,255,.12)}
+.sim-note{margin-top:14px;font-size:13px;color:#7E7E8C;font-family:var(--f-mono)}
+
+/* PREIS */
+.prize .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:56px;align-items:center}
+.prize h2{font-size:clamp(32px,4.4vw,54px);line-height:.98}
+.prize .eyebrow{color:var(--magenta);margin-bottom:14px}
+.podium{display:grid;gap:10px}
+.podium div{display:grid;grid-template-columns:92px minmax(0,1fr);gap:16px;align-items:center;padding:16px 18px;background:var(--paper)}
+.podium div:first-child{background:var(--magenta);color:#fff}
+.podium b{font-family:var(--f-display);font-weight:900;font-size:34px;line-height:1}
+.podium span{font-size:15px}
+.podium strong{display:block;font-size:17px}
+
+/* OFFENE PUNKTE */
+.open{border-top:1px solid var(--line)}
+.issues{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0;border-top:2px solid var(--ink)}
+.issue{padding:24px 28px 28px 0;border-bottom:1px solid var(--line);display:grid;grid-template-columns:110px minmax(0,1fr);gap:16px}
+.issue:nth-child(odd){border-right:1px solid var(--line)}
+.issue:nth-child(even){padding-left:28px}
+.issue .tag{font-family:var(--f-mono);font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding-top:4px}
+.tag.r{color:var(--magenta)}
+.tag.y{color:#8A6A00}
+.issue h3{font-size:19px;margin-bottom:6px}
+.issue p{font-size:15px;color:#3a3a40}
+.issue p b{color:var(--ink)}
+
+/* FOOTER */
+.foot{background:var(--magenta);color:#fff;clip-path:polygon(0 0,100% 3vw,100% 100%,0 100%);padding-block:calc(56px + 3vw) 40px}
+.foot .wrap{display:flex;flex-wrap:wrap;gap:24px;justify-content:space-between;align-items:flex-end}
+.foot .claim{font-family:var(--f-display);font-weight:900;font-size:clamp(28px,4vw,48px);line-height:.95}
+.foot svg{width:56px;height:56px}
+.foot .meta{font-family:var(--f-mono);font-size:12px;opacity:.9;width:100%;border-top:1px solid rgba(255,255,255,.35);padding-top:14px}
+
+@media (max-width:980px){
+  .steps{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .sim{grid-template-columns:1fr}
+  .spec{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:760px){
+  .hero .wrap{grid-template-columns:1fr;min-height:0}
+  .studio{clip-path:polygon(0 8%,100% 0,100% 100%,0 100%);height:440px;margin-left:calc(-1 * max(20px,env(safe-area-inset-left,0px)))}
+  .studio svg{inset:8% 0 4% 0;width:100%}
+  .sec-head{grid-template-columns:1fr}
+  .views{grid-template-columns:1fr}
+  .steps{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .prize .wrap{grid-template-columns:1fr;gap:32px}
+  .issues{grid-template-columns:1fr}
+  .issue,.issue:nth-child(even){padding-left:0;border-right:0;grid-template-columns:1fr;gap:6px}
+  section{padding-block:64px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+
+<!-- Telekom T-Logo (Brand-Portal-Pfad) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="T" viewBox="0 0 24 24"><path fill="currentColor" d="M6.722 15.84h-4.8v-4.8h4.791v4.8zM1.922 0v8.16H3.36v-.236c0-3.844 2.159-6.24 6.239-6.24h.237v17.279c0 2.396-.957 3.36-3.36 3.36h-.72V24h12.478v-1.676h-.72c-2.395 0-3.36-.957-3.36-3.361V1.676h.237c4.08 0 6.239 2.396 6.239 6.24v.236h1.439V0Zm15.356 15.84h4.8v-4.8h-4.791v4.8z"/></symbol>
+    <pattern id="hex" width="28" height="49" patternUnits="userSpaceOnUse" patternTransform="scale(.42)">
+      <path fill="#7A003E" fill-opacity=".55" d="M13.99 9.25l13 7.5v15l-13 7.5L1 31.75v-15l12.99-7.5zM3 17.9v12.7l10.99 6.34 11-6.35V17.9l-11-6.34L3 17.9zM0 15l12.98-7.5V0h-2v6.35L0 12.69v2.3zm0 18.5L12.98 41v8h-2v-6.85L0 35.81v-2.3zM15 0v7.5L27.99 15H28v-2.31h-.01L17 6.35V0h-2zm0 49v-8l12.99-7.5H28v2.31h-.01L17 42.15V49h-2z"/>
+    </pattern>
+    <linearGradient id="lightBody" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fff" stop-opacity=".34"/>
+      <stop offset=".38" stop-color="#fff" stop-opacity="0"/>
+      <stop offset=".8" stop-color="#000" stop-opacity=".18"/>
+      <stop offset="1" stop-color="#000" stop-opacity=".34"/>
+    </linearGradient>
+    <linearGradient id="edgeShade" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#000" stop-opacity=".28"/>
+      <stop offset=".12" stop-color="#000" stop-opacity="0"/>
+      <stop offset=".88" stop-color="#000" stop-opacity="0"/>
+      <stop offset="1" stop-color="#000" stop-opacity=".32"/>
+    </linearGradient>
+    <linearGradient id="strapShade" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fff" stop-opacity=".18"/>
+      <stop offset=".5" stop-color="#fff" stop-opacity="0"/>
+      <stop offset="1" stop-color="#000" stop-opacity=".22"/>
+    </linearGradient>
+    <linearGradient id="glass" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#3a3a44"/><stop offset=".5" stop-color="#0c0c10"/><stop offset="1" stop-color="#1c1c24"/>
+    </linearGradient>
+  </defs>
+</svg>
+
+<header class="top">
+  <div class="wrap">
+    <div class="brand"><svg class="tlogo" aria-label="Telekom"><use href="#T"/></svg><span>TMTM 2027</span></div>
+    <span class="eyebrow">Konzept v2 · Live-Interaktion</span>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<div class="hero">
+  <div class="wrap">
+    <div class="hero-copy">
+      <span class="eyebrow">Magenta Fokus Pocket · Bonn, Januar 2027</span>
+      <h1><span>OFFLINE IS</span><span>THE NEW</span><span>LUXURY</span></h1>
+      <p class="hero-lead">800 Topmanager bekommen beim Check-in einen Crossbody-Pocket. Das Handy steckt sichtbar darin. Die Arena zählt live mit, wer offline ist. Der Lohn ist nicht kaufbar: ein Dinner mit dem CEO.</p>
+      <div class="hero-facts">
+        <span><b>800</b>Gäste, ein Pocket je Gast</span>
+        <span><b>7 × 50′</b>Fokus-Zyklen am Tag</span>
+        <span><b>0</b>Apps zum Installieren</span>
+      </div>
+    </div>
+    <div class="studio" aria-label="Rendering: Magenta Fokus Pocket, Produktansicht">
+      <div data-pocket="hero"></div>
+      <span class="studio-tag">Rendering · Tech Weave · #E20074</span>
+    </div>
+  </div>
+</div>
+
+<!-- ============ OBJEKT ============ -->
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <div><p class="eyebrow">01 · Das Objekt</p><h2>Ein Accessoire, kein Giveaway</h2></div>
+      <p>Handygroß, aus 3D-Tech-Mesh mit Wabenstruktur. Der breite Gurt läuft diagonal über den Körper und trägt den Claim wie ein Billboard. Die Oberseite bleibt offen, damit jeder sieht: Das Handy steckt drin.</p>
+    </div>
+    <div class="views">
+      <article class="view">
+        <div class="stage" data-pocket="front"></div>
+        <div class="cap"><h3>Front</h3><p>T-Logo und Claim in Weiß, Siebdruck auf Mesh. Schwarze Metall-D-Ringe.</p></div>
+      </article>
+      <article class="view">
+        <div class="stage" data-pocket="worn"></div>
+        <div class="cap"><h3>Getragen</h3><p>Gurt diagonal von Schulter zu Hüfte. Der Claim läuft über den Anzug.</p></div>
+      </article>
+      <article class="view">
+        <div class="stage" data-pocket="inside"></div>
+        <div class="cap"><h3>Innenlasche</h3><p>Ein eigener QR-Code pro Pocket. Scannen, Handy rein, Fokus läuft.</p></div>
+      </article>
+    </div>
+    <dl class="spec">
+      <div><dt>Format</dt><dd>ca. 8 × 15 cm, oben offen</dd></div>
+      <div><dt>Material</dt><dd>3D Tech Mesh, Wabe</dd></div>
+      <div><dt>Gurt</dt><dd>38 mm Webbing, abnehmbar</dd></div>
+      <div><dt>Farbe</dt><dd>Telekom Magenta #E20074</dd></div>
+    </dl>
+    <p class="rule-note"><span class="chip">PRODUKTION</span><span>Logo und Claim kommen als <b>Vektor-Druckdaten</b>, nicht aus einem KI-Bild. So stimmen Schreibweise und T-Logo zu 100 %. Die Renderings oben sind aus denselben Vektordaten gebaut.</span></p>
+  </div>
+</section>
+
+<!-- ============ FLOW ============ -->
+<div class="flow">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><p class="eyebrow">02 · Der Flow</p><h2>Ein Tag aus Sicht eines Gastes</h2></div>
+      <p>Sechs Momente, ein durchgehender Faden. Jeder Schritt braucht nur das, was der Gast ohnehin in der Hand hat: Pocket und Handy. Der Höhepunkt ist der Blick in die Arena, wenn die Ränge magenta werden.</p>
+    </div>
+    <ol class="steps">
+      <li class="step"><span class="num">1</span><div class="ill" data-ill="desk"></div><div class="body"><span class="when">08:15 · CHECK-IN</span><h3>Pocket statt Badge-Tüte</h3><p>Der Host legt den Pocket um. Kein Karton, keine Erklärung, nur ein Satz: „Heute zählt, wer da ist.“</p></div></li>
+      <li class="step"><span class="num">2</span><div class="ill" data-ill="scan"></div><div class="body"><span class="when">08:55 · AKTIVIEREN</span><h3>QR scannen</h3><p>Kamera auf die Innenlasche. Der Browser öffnet die persönliche Fokus-Seite. Kein Login, kein Download.</p></div></li>
+      <li class="step"><span class="num">3</span><div class="ill" data-ill="in"></div><div class="body"><span class="when">09:00 · FOKUS</span><h3>Handy rein</h3><p>Ein Tippen auf „Handy rein“, Gerät in den Pocket. 50 Minuten laufen. Das Display zeigt sichtbar nach innen.</p></div></li>
+      <li class="step peak"><span class="num">4</span><div class="ill" data-ill="arena"></div><div class="body"><span class="when">09:05 · DER MOMENT</span><h3>Die Arena wird magenta</h3><p>Der Bühnen-Screen zählt live: „734 von 800 offline“. Der CEO steckt sein Handy als Erster ein.</p></div></li>
+      <li class="step"><span class="num">5</span><div class="ill" data-ill="break"></div><div class="body"><span class="when">09:50 · SCREEN BREAK</span><h3>10 Minuten frei</h3><p>Ein Gong, das Licht wechselt. Handy raus, Mails checken. Die Seite zeigt den eigenen Rang.</p></div></li>
+      <li class="step"><span class="num">6</span><div class="ill" data-ill="prize"></div><div class="body"><span class="when">16:00 · REVEAL</span><h3>Ranking auf der Bühne</h3><p>Die Top 10 werden gezeigt. Platz 1 gewinnt das Dinner mit dem CEO. Der Pocket geht mit nach Hause.</p></div></li>
+    </ol>
+  </div>
+</div>
+
+<!-- ============ ARENA SIMULATION ============ -->
+<div class="arena">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><p class="eyebrow">03 · Live-Simulation</p><h2>So sieht die Arena den Tag</h2></div>
+      <p>Jedes Quadrat ist ein Gast mit Handy im Pocket. Jeder blaue Punkt ist ein leuchtendes Display. Zieh die Zeitleiste oder starte den Tag. Rechts siehst du die Fokus-Seite eines Gastes, der weiß umrandet im Saal sitzt.</p>
+    </div>
+    <div class="sim">
+      <div class="hall">
+        <canvas id="hall" width="1280" height="800" aria-label="Simulation der Arena mit 800 Gästen"></canvas>
+        <div class="legend"><span class="off"><i></i>offline, Handy im Pocket</span><span class="on"><i></i>Display an</span><span class="me"><i></i>der Gast rechts</span></div>
+      </div>
+      <div class="phone" aria-live="polite">
+        <div class="screen s-focus" id="screen">
+          <div class="urlbar">magenta-fokus.de/pocket/04711</div>
+          <div class="app">
+            <div class="app-top"><svg aria-hidden="true"><use href="#T"/></svg><span id="appLabel">Fokus 1 / 7</span></div>
+            <div class="ring">
+              <svg viewBox="0 0 200 200" aria-hidden="true">
+                <circle cx="100" cy="100" r="86" fill="none" stroke="currentColor" stroke-opacity=".18" stroke-width="10"/>
+                <circle id="ringArc" cx="100" cy="100" r="86" fill="none" stroke="currentColor" stroke-width="10" stroke-linecap="butt" transform="rotate(-90 100 100)" stroke-dasharray="540.35" stroke-dashoffset="0"/>
+              </svg>
+              <div class="mid"><div class="big" id="appBig">50:00</div><div class="sm" id="appSm">bis Screen Break</div></div>
+            </div>
+            <p class="app-msg" id="appMsg">Du und 733 andere sind gerade offline.</p>
+            <button class="app-btn" id="appBtn" type="button">Handy rausnehmen</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline">
+      <div class="tl-head">
+        <div class="clock" id="clock">09:00<small id="phase">Fokus</small></div>
+        <button class="play" id="play" type="button">▶ Tag abspielen</button>
+      </div>
+      <div class="strip-scroll">
+        <div class="strip" id="strip">
+          <div class="bars" id="bars"></div>
+          <input type="range" id="t" min="0" max="419" value="5" step="1" aria-label="Uhrzeit im Tagesablauf">
+          <div class="cursor" id="cursor"></div>
+          <div class="ticks"><span>09:00</span><span>10:00</span><span>11:00</span><span>12:00</span><span>13:00</span><span>14:00</span><span>15:00</span><span>16:00</span></div>
+        </div>
+      </div>
+      <p class="sim-note">Agenda-Belegung ist ein Vorschlag. Offline-Quoten sind Annahmen für die Simulation, keine Messwerte.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ============ PREIS ============ -->
+<section class="prize">
+  <div class="wrap">
+    <div>
+      <p class="eyebrow">04 · Der Anreiz</p>
+      <h2>Was man nicht kaufen kann, will man gewinnen</h2>
+      <p style="margin-top:20px;color:#3a3a40;max-width:34em">Topmanager reagieren auf Status, nicht auf Gutscheine. Deshalb sind alle Preise Zugang und Zeit. Das Ranking zählt Fokus-Minuten, nicht Klicks.</p>
+    </div>
+    <div class="podium">
+      <div><b>#1</b><span><strong>Dinner mit dem CEO</strong>Ein Abend, ein Tisch, kein Handy.</span></div>
+      <div><b>#2–3</b><span><strong>Backstage beim Abendevent</strong>Soundcheck und Regie live erleben.</span></div>
+      <div><b>#4–10</b><span><strong>Telekom-Erlebnis nach Wahl</strong>Zum Beispiel ein Tag im T-Labs-Team.</span></div>
+      <div><b>alle</b><span><strong>„Ich war offline“-Pin</strong>Für alle mit mindestens 5 vollen Zyklen.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ OFFENE PUNKTE ============ -->
+<section class="open">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><p class="eyebrow">05 · Vor der Freigabe</p><h2>Fünf Punkte, die wir jetzt klären</h2></div>
+      <p>Das Konzept trägt. Diese Punkte entscheiden, ob es am Tag auch sauber läuft.</p>
+    </div>
+    <div class="issues">
+      <div class="issue"><span class="tag r">kritisch</span><div><h3>Messung ehrlich halten</h3><p>Ein Browser kann nicht prüfen, ob das Handy wirklich im Pocket steckt. Lösung: <b>Scan rein, Tippen raus</b>, plus Sichtbarkeit durch die offene Oberseite. Das Ehrenwort ist Teil der Idee.</p></div></div>
+      <div class="issue"><span class="tag r">kritisch</span><div><h3>Datenschutz und Mitbestimmung</h3><p>Wir loggen Verhalten von Führungskräften. Daher <b>Opt-in, Pseudonym im Ranking</b>, Namen nur für die Top 10 mit Zustimmung, Löschung nach dem Event. Datenschutz früh einbinden.</p></div></div>
+      <div class="issue"><span class="tag r">Zeitplan</span><div><h3>Produktion 800 Stück</h3><p>Heute ist der 6. November. Muster bis Ende November, Freigabe, dann rund 6 bis 8 Wochen Fertigung. Das ist knapp. <b>Lieferanten diese Woche anfragen.</b></p></div></div>
+      <div class="issue"><span class="tag y">Ablauf</span><div><h3>Ausnahmen für Erreichbarkeit</h3><p>Wer Rufbereitschaft hat, scannt als <b>„On Duty“</b> und verliert keine Punkte. Notfälle laufen über den Event-Desk, der Nachrichten an den Platz bringt.</p></div></div>
+      <div class="issue"><span class="tag y">Agenda</span><div><h3>Mittag im Rhythmus</h3><p>Sieben Zyklen à 60 Minuten lassen keinen Lunch zu. Vorschlag: <b>Lunch als langer Break</b>, danach startet Zyklus 4. Die Simulation zeigt die Basisversion.</p></div></div>
+      <div class="issue"><span class="tag y">Technik</span><div><h3>Live-Zähler auf der LED-Wand</h3><p>Die Fokus-Seiten senden Status an einen Server, die Regie holt den Zähler als Browser-Quelle in die Bildmischung. Fallback: Zähler alle 60 Sekunden statt live.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="claim">OFFLINE IS<br>THE NEW LUXURY</div>
+    <svg aria-label="Telekom"><use href="#T"/></svg>
+    <div class="meta">intern | Oliver Handke | Magenta Fokus Pocket · TMTM 2027 | 06.11.2026</div>
+  </div>
+</footer>
+
+<script>
+(function(){
+const M='#E20074', MD='#B4005A', MDEEP='#8A0046';
+const T_PATH='M6.722 15.84h-4.8v-4.8h4.791v4.8zM1.922 0v8.16H3.36v-.236c0-3.844 2.159-6.24 6.239-6.24h.237v17.279c0 2.396-.957 3.36-3.36 3.36h-.72V24h12.478v-1.676h-.72c-2.395 0-3.36-.957-3.36-3.361V1.676h.237c4.08 0 6.239 2.396 6.239 6.24v.236h1.439V0Zm15.356 15.84h4.8v-4.8h-4.791v4.8z';
+const CLAIM='OFFLINE IS THE NEW LUXURY  ·  ';
+let uid=0;
+
+/* Pocket-Körper: Breite 160, Höhe 300, Ursprung oben links. phone = Handy steckt drin */
+function pocketBody(x,y,s,opts={}){
+  const id='p'+(uid++);
+  const w=160,h=300,phone=opts.phone!==false;
+  return `<g transform="translate(${x} ${y}) scale(${s})">
+    ${phone?`<g><rect x="18" y="-46" width="124" height="90" rx="16" fill="url(#glass)"/><rect x="22" y="-42" width="116" height="86" rx="13" fill="none" stroke="#55555f" stroke-width="1"/><rect x="66" y="-36" width="28" height="6" rx="3" fill="#2a2a32"/></g>`:''}
+    <defs><clipPath id="${id}"><rect width="${w}" height="${h}" rx="20"/></clipPath></defs>
+    <g clip-path="url(#${id})">
+      <rect width="${w}" height="${h}" fill="${M}"/>
+      <rect width="${w}" height="${h}" fill="url(#hex)"/>
+      <rect width="${w}" height="${h}" fill="url(#lightBody)"/>
+      <rect width="${w}" height="${h}" fill="url(#edgeShade)"/>
+      <rect width="${w}" height="12" fill="${MDEEP}"/>
+      <rect y="12" width="${w}" height="2" fill="#fff" fill-opacity=".25"/>
+      <path d="M8 22 H152 M8 ${h-10} H152" stroke="#fff" stroke-opacity=".35" stroke-width="1" stroke-dasharray="3 4"/>
+    </g>
+    <rect width="${w}" height="${h}" rx="20" fill="none" stroke="${MDEEP}" stroke-opacity=".6"/>
+    <g transform="translate(52 78) scale(2.33)" fill="#fff"><path d="${T_PATH}"/></g>
+    <g fill="#fff" font-family="Archivo, Arial, sans-serif" font-weight="900" text-anchor="middle" letter-spacing="1.2">
+      <text x="80" y="174" font-size="17">OFFLINE IS</text>
+      <text x="80" y="195" font-size="17">THE NEW</text>
+      <text x="80" y="216" font-size="17">LUXURY</text>
+    </g>
+    <text x="80" y="${h-22}" text-anchor="middle" fill="#fff" fill-opacity=".75" font-family="IBM Plex Mono, monospace" font-size="8" letter-spacing="2">TMTM · BONN · 2027</text>
+    ${dring(-4,22)}${dring(w+4,22)}
+  </g>`;
+}
+function dring(cx,cy){
+  return `<g><rect x="${cx-7}" y="${cy-2}" width="14" height="16" rx="2" fill="${MDEEP}"/><path d="M${cx-9} ${cy} v-10 a9 9 0 0 1 18 0 v10 z" fill="none" stroke="#111" stroke-width="4"/><path d="M${cx-9} ${cy} v-10 a9 9 0 0 1 18 0" fill="none" stroke="#fff" stroke-opacity=".35" stroke-width="1"/></g>`;
+}
+function strapPath(id,d,width,repeat){
+  return `<path id="${id}" d="${d}" fill="none" stroke="${MD}" stroke-width="${width}" stroke-linecap="butt"/>
+  <path d="${d}" fill="none" stroke="#fff" stroke-opacity=".12" stroke-width="${width}" stroke-dasharray="1 3"/>
+  <text fill="#fff" font-family="Archivo, Arial, sans-serif" font-weight="900" font-size="${width*0.46}" letter-spacing="2" dominant-baseline="central"><textPath href="#${id}">${CLAIM.repeat(repeat)}</textPath></text>`;
+}
+
+function heroSVG(){
+  const sid='s'+(uid++);
+  return `<svg viewBox="0 0 440 560" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Magenta Fokus Pocket mit Gurt">
+    <g transform="rotate(-7 220 300)">
+      ${strapPath(sid,'M132 190 C 70 40, 140 -30, 230 -40 S 400 30, 312 190',34,3)}
+      <ellipse cx="226" cy="520" rx="120" ry="12" fill="#000" fill-opacity=".14"/>
+      ${pocketBody(140,180,1.08)}
+    </g>
+  </svg>`;
+}
+function frontSVG(){
+  const sid='s'+(uid++);
+  return `<svg viewBox="0 0 400 500" role="img" aria-label="Frontansicht">
+    ${strapPath(sid,'M130 158 C 80 40, 160 10, 200 10 S 320 40, 270 158',28,2)}
+    ${pocketBody(120,150,.96)}
+    <ellipse cx="200" cy="452" rx="96" ry="9" fill="#000" fill-opacity=".12"/>
+  </svg>`;
+}
+function wornSVG(){
+  const sid='s'+(uid++);
+  return `<svg viewBox="0 0 400 500" role="img" aria-label="Pocket getragen">
+    <circle cx="200" cy="78" r="38" fill="#C9C9CF"/>
+    <path d="M186 112 h28 v22 h-28z" fill="#BDBDC4"/>
+    <path d="M96 520 L104 210 Q108 150 170 134 L200 170 L230 134 Q292 150 296 210 L304 520 Z" fill="#23232B"/>
+    <path d="M170 134 L200 230 L230 134 L214 128 L200 160 L186 128 Z" fill="#F4F4F6"/>
+    <path d="M196 166 L204 166 L208 240 L200 252 L192 240 Z" fill="#3A3A46"/>
+    <path d="M170 134 L200 232 L180 300 L150 160 Z" fill="#2C2C36"/>
+    <path d="M230 134 L200 232 L220 300 L250 160 Z" fill="#2C2C36"/>
+    <path d="M96 520 L104 210 Q106 170 130 150 L120 520 Z" fill="#1A1A21"/>
+    <path d="M304 520 L296 210 Q294 170 270 150 L280 520 Z" fill="#1A1A21"/>
+    ${strapPath(sid,'M128 146 L268 372',30,2)}
+    ${pocketBody(232,330,.5)}
+  </svg>`;
+}
+function qrSVG(x,y,size,seed){
+  const n=21,c=size/n; let s=seed, out='';
+  const rnd=()=>(s=(s*16807)%2147483647)/2147483647;
+  const finder=(i,j)=>(i<7&&j<7)||(i>=n-7&&j<7)||(i<7&&j>=n-7);
+  for(let i=0;i<n;i++)for(let j=0;j<n;j++){
+    if(finder(i,j))continue;
+    if(rnd()>.52)out+=`<rect x="${x+j*c}" y="${y+i*c}" width="${c+.2}" height="${c+.2}"/>`;
+  }
+  const f=(fx,fy)=>`<rect x="${fx}" y="${fy}" width="${7*c}" height="${7*c}"/><rect x="${fx+c}" y="${fy+c}" width="${5*c}" height="${5*c}" fill="#fff"/><rect x="${fx+2*c}" y="${fy+2*c}" width="${3*c}" height="${3*c}"/>`;
+  return `<g fill="#0E0E12">${out}${f(x,y)}${f(x+(n-7)*c,y)}${f(x,y+(n-7)*c)}</g>`;
+}
+function insideSVG(){
+  const id='c'+(uid++);
+  return `<svg viewBox="0 0 400 500" role="img" aria-label="Innenlasche mit QR-Code">
+    <defs><clipPath id="${id}"><rect x="110" y="120" width="180" height="320" rx="22"/></clipPath></defs>
+    <g clip-path="url(#${id})">
+      <rect x="110" y="120" width="180" height="320" fill="${MDEEP}"/>
+      <rect x="110" y="120" width="180" height="320" fill="url(#hex)"/>
+      <rect x="110" y="120" width="180" height="320" fill="url(#lightBody)"/>
+    </g>
+    <path d="M110 150 Q200 110 290 150 L290 120 L110 120 Z" fill="${M}"/>
+    <g transform="rotate(-4 200 250)">
+      <rect x="128" y="96" width="144" height="210" rx="10" fill="#fff"/>
+      <rect x="128" y="96" width="144" height="210" rx="10" fill="none" stroke="#000" stroke-opacity=".08"/>
+      <g transform="translate(144 110) scale(.9)" fill="${M}"><path d="${T_PATH}"/></g>
+      <text x="176" y="124" fill="#0E0E12" font-family="Archivo, Arial, sans-serif" font-weight="800" font-size="11">MAGENTA FOKUS</text>
+      ${qrSVG(146,140,108,4711)}
+      <text x="200" y="270" text-anchor="middle" fill="#0E0E12" font-family="IBM Plex Mono, monospace" font-size="8.5">magenta-fokus.de/pocket/04711</text>
+      <text x="200" y="288" text-anchor="middle" fill="${M}" font-family="Archivo, Arial, sans-serif" font-weight="800" font-size="10" letter-spacing="1">SCANNEN · HANDY REIN</text>
+    </g>
+    ${dring(106,150)}${dring(294,150)}
+  </svg>`;
+}
+
+/* Storyboard-Illustrationen */
+const ill={
+  desk:()=>`<svg viewBox="0 0 200 200" aria-hidden="true"><rect x="20" y="120" width="160" height="14" fill="#0E0E12"/><rect x="28" y="134" width="10" height="46" fill="#0E0E12"/><rect x="162" y="134" width="10" height="46" fill="#0E0E12"/><circle cx="70" cy="70" r="16" fill="#C9C9CF"/><path d="M44 120 Q46 90 70 88 Q94 90 96 120Z" fill="#23232B"/><circle cx="140" cy="62" r="16" fill="#C9C9CF"/><path d="M112 120 Q114 82 140 80 Q166 82 168 120Z" fill="#6F6F6F"/><path d="M88 104 Q110 82 128 96" fill="none" stroke="${MD}" stroke-width="7"/>${pocketBody(98,96,.13,{phone:false})}</svg>`,
+  scan:()=>`<svg viewBox="0 0 200 200" aria-hidden="true"><rect x="40" y="70" width="70" height="110" rx="10" fill="${MDEEP}"/><rect x="48" y="80" width="54" height="60" rx="4" fill="#fff"/>${qrSVG(55,86,40,77)}<g transform="rotate(14 140 90)"><rect x="112" y="30" width="54" height="104" rx="10" fill="#0E0E12"/><rect x="117" y="38" width="44" height="86" rx="5" fill="#fff"/><rect x="123" y="54" width="32" height="32" fill="none" stroke="${M}" stroke-width="3" stroke-dasharray="8 16" stroke-dashoffset="4"/><rect x="123" y="96" width="32" height="6" fill="${M}"/></g><path d="M104 110 L120 100" stroke="${M}" stroke-width="2" stroke-dasharray="3 3"/></svg>`,
+  in:()=>`<svg viewBox="0 0 200 200" aria-hidden="true"><path d="M100 20 V60" stroke="${M}" stroke-width="3"/><path d="M90 50 L100 62 L110 50" fill="none" stroke="${M}" stroke-width="3"/>${pocketBody(62,84,.48)}</svg>`,
+  arena:()=>{let d='';for(let r=0;r<6;r++){const R=40+r*14,cnt=8+r*3;for(let k=0;k<cnt;k++){const a=Math.PI*(1.05+.9*k/(cnt-1));const x=100+R*Math.cos(a)*1.5,y=150+R*Math.sin(a);d+=((k*7+r*3)%11===0)?`<circle cx="${x}" cy="${y}" r="2.6" fill="#5AB0FF"/>`:`<rect x="${x-2.6}" y="${y-2.6}" width="5.2" height="5.2" fill="#fff"/>`;}}return `<svg viewBox="0 0 200 200" aria-hidden="true">${d}<rect x="60" y="158" width="80" height="26" fill="#0E0E12"/><text x="100" y="175" text-anchor="middle" fill="#fff" font-family="Archivo, Arial, sans-serif" font-weight="900" font-size="11">734/800</text></svg>`},
+  break:()=>`<svg viewBox="0 0 200 200" aria-hidden="true"><circle cx="100" cy="100" r="58" fill="none" stroke="#D9D9D9" stroke-width="10"/><circle cx="100" cy="100" r="58" fill="none" stroke="#0E0E12" stroke-width="10" stroke-dasharray="364.4" stroke-dashoffset="303.7" transform="rotate(-90 100 100)"/><text x="100" y="100" text-anchor="middle" fill="#0E0E12" font-family="Archivo, Arial, sans-serif" font-weight="900" font-size="28">10′</text><text x="100" y="122" text-anchor="middle" fill="#6F6F6F" font-family="IBM Plex Mono, monospace" font-size="10">SCREEN BREAK</text></svg>`,
+  prize:()=>`<svg viewBox="0 0 200 200" aria-hidden="true"><rect x="30" y="120" width="44" height="50" fill="#D9D9D9"/><rect x="78" y="90" width="44" height="80" fill="${M}"/><rect x="126" y="134" width="44" height="36" fill="#D9D9D9"/><text x="100" y="140" text-anchor="middle" fill="#fff" font-family="Archivo, Arial, sans-serif" font-weight="900" font-size="22">1</text><text x="52" y="152" text-anchor="middle" fill="#0E0E12" font-family="Archivo, Arial, sans-serif" font-weight="900" font-size="16">2</text><text x="148" y="158" text-anchor="middle" fill="#0E0E12" font-family="Archivo, Arial, sans-serif" font-weight="900" font-size="16">3</text><g transform="translate(88 44) scale(1)" fill="${M}"><path d="${T_PATH}"/></g></svg>`
+};
+
+document.querySelectorAll('[data-pocket]').forEach(el=>{
+  const k=el.dataset.pocket;
+  el.outerHTML = k==='hero'?heroSVG():k==='front'?frontSVG():k==='worn'?wornSVG():insideSVG();
+});
+document.querySelectorAll('[data-ill]').forEach(el=>{el.innerHTML=ill[el.dataset.ill]();});
+/* .view .stage was replaced by svg directly; wrap again so layout holds */
+document.querySelectorAll('.view > svg').forEach(svg=>{const d=document.createElement('div');d.className='stage';svg.replaceWith(d);d.appendChild(svg);});
+
+/* ============ SIMULATION ============ */
+const AGENDA=['CEO Strategie-Update','Keynote: Netz & KI','Challenge-Runde 1','Keynote: Kunde','Sessions A','Challenge-Runde 2','Sessions B & Wrap-up'];
+const bars=document.getElementById('bars');
+AGENDA.forEach((a,i)=>{
+  const f=document.createElement('div');f.className='f';f.dataset.min=i*60;f.innerHTML=`<span>${a}</span><em>Fokus ${i+1}</em>`;
+  const b=document.createElement('div');b.className='b';b.dataset.min=i*60+50;b.title='Screen Break';
+  bars.append(f,b);
+});
+
+const cv=document.getElementById('hall'),ctx=cv.getContext('2d');
+const W=1280,H=800;
+// Ränge: Amphitheater um die Bühne unten Mitte
+const seats=[];
+const rows=16,cx=W/2,cy=H*0.93;
+let radii=[],totalLen=0;
+for(let r=0;r<rows;r++){const R=200+r*31;radii.push(R);totalLen+=R;}
+let made=0;
+radii.forEach((R,r)=>{
+  const n=r===rows-1?800-made:Math.round(800*R/totalLen);
+  for(let k=0;k<n;k++){
+    const a=Math.PI*(1.06+0.88*(k+.5)/n);
+    seats.push({x:cx+R*Math.cos(a)*1.55,y:cy+R*Math.sin(a)*0.98,u:0,v:0});
+  }
+  made+=n;
+});
+let seed=20270115;const rnd=()=>(seed=(seed*16807)%2147483647)/2147483647;
+seats.forEach(s=>{s.u=rnd();s.flick=rnd();});
+const ME=437;
+
+function state(t){ // t in Minuten ab 09:00
+  const cyc=Math.min(6,Math.floor(t/60)),m=t-cyc*60,focus=m<50;
+  return {cyc,m,focus};
+}
+function target(t){
+  const {cyc,m,focus}=state(t);
+  if(!focus) return 0.1;
+  const peak=Math.min(0.96,0.80+cyc*0.025);
+  const ramp=Math.min(1,m/4); // erste 4 Minuten: Handys wandern in die Pockets
+  const fade=m>46?(50-m)/4*0.15+0.85:1; // kurz vor dem Gong wird es unruhig
+  return 0.1+(peak-0.1)*ramp*fade;
+}
+
+let t=5,meOut=false,playing=false,lastTick=0;
+const inp=document.getElementById('t'),cursor=document.getElementById('cursor');
+const clock=document.getElementById('clock'),phase=document.getElementById('phase');
+const screen=document.getElementById('screen'),appBig=document.getElementById('appBig'),appSm=document.getElementById('appSm'),appMsg=document.getElementById('appMsg'),appBtn=document.getElementById('appBtn'),appLabel=document.getElementById('appLabel'),ringArc=document.getElementById('ringArc');
+const CIRC=540.35;
+const fmt=n=>String(n).padStart(2,'0');
+
+function offlineCount(t){const tg=target(t);let c=0;seats.forEach((s,i)=>{if(i===ME)return;if(s.u<tg)c++;});return c;}
+
+function meOffline(){const {focus}=state(t);return focus && !meOut;}
+
+function draw(){
+  const tg=target(t),{focus,cyc,m}=state(t);
+  ctx.clearRect(0,0,W,H);
+  // Bühnenlicht
+  const g=ctx.createRadialGradient(cx,cy,40,cx,cy,720);
+  g.addColorStop(0,focus?'rgba(226,0,116,.32)':'rgba(90,176,255,.16)');g.addColorStop(1,'rgba(0,0,0,0)');
+  ctx.fillStyle=g;ctx.fillRect(0,0,W,H);
+  let off=0;
+  seats.forEach((s,i)=>{
+    let isOff = i===ME ? meOffline() : s.u<tg;
+    if(i!==ME && isOff && focus && s.flick<0.03 && (Math.floor(t)+i)%3===0) isOff=false;
+    s.v += ((isOff?1:0)-s.v)*0.35;
+    if(isOff) off++;
+    if(s.v>0.5){
+      ctx.fillStyle='#E20074';ctx.fillRect(s.x-6,s.y-6,12,12);
+    }else{
+      ctx.shadowColor='#5AB0FF';ctx.shadowBlur=14;ctx.fillStyle='#5AB0FF';
+      ctx.beginPath();ctx.arc(s.x,s.y,5,0,Math.PI*2);ctx.fill();ctx.shadowBlur=0;
+      ctx.fillStyle='rgba(255,255,255,.08)';ctx.fillRect(s.x-6,s.y-6,12,12);
+    }
+    if(i===ME){ctx.strokeStyle='#fff';ctx.lineWidth=3;ctx.strokeRect(s.x-10,s.y-10,20,20);}
+  });
+  // LED-Wand auf der Bühne
+  const sw=420,sh=118,sx=cx-sw/2,sy=H-sh-18;
+  ctx.fillStyle='#050507';ctx.fillRect(sx-6,sy-6,sw+12,sh+12);
+  ctx.fillStyle=focus?'#E20074':'#15151C';ctx.fillRect(sx,sy,sw,sh);
+  ctx.fillStyle='#fff';ctx.textAlign='center';
+  ctx.font='900 64px Archivo, Arial, sans-serif';
+  ctx.fillText(focus?`${off} / 800`:'SCREEN BREAK',cx,sy+70);
+  ctx.font='600 20px "IBM Plex Mono", monospace';
+  ctx.fillText(focus?'SIND GERADE OFFLINE':`FOKUS ${Math.min(7,cyc+2)} STARTET IN ${fmt(60-m)} MIN`,cx,sy+102);
+  return off;
+}
+
+function updateUI(off){
+  const {cyc,m,focus}=state(t);
+  const hh=9+Math.floor(t/60),mm=Math.floor(t%60);
+  clock.firstChild.nodeValue=`${fmt(hh)}:${fmt(mm)}`;
+  phase.textContent=focus?`Fokus ${cyc+1} · ${AGENDA[cyc]}`:'Screen Break';
+  const pct=t/419;cursor.style.left=`calc(${pct*100}% - 1px)`;
+  inp.value=Math.floor(t);
+  // Fokus-Minuten des Gastes (vereinfachte Annahme: voll dabei außer bei manuell „raus“)
+  const doneFocus=cyc*50+(focus?m:50);
+  const rank=Math.max(1,Math.round(212-cyc*24-(focus?m/50*20:20)));
+  screen.className='screen '+(focus?(meOut?'s-out':'s-focus'):'s-break');
+  if(focus){
+    const rem=50-m;appLabel.textContent=`Fokus ${cyc+1} / 7`;
+    if(!meOut){
+      appBig.textContent=`${fmt(Math.floor(rem))}:00`;appSm.textContent='bis Screen Break';
+      ringArc.style.strokeDashoffset=CIRC*(m/50);
+      appMsg.textContent=`Du und ${off-1} andere sind gerade offline.`;
+      appBtn.textContent='Handy rausnehmen';
+    }else{
+      appBig.textContent='Pause';appSm.textContent='Fokus unterbrochen';
+      ringArc.style.strokeDashoffset=CIRC*(m/50);
+      appMsg.textContent=`${off} Gäste sind offline. Deine Minuten zählen erst wieder, wenn das Handy steckt.`;
+      appBtn.textContent='Handy rein';
+    }
+  }else{
+    appLabel.textContent='Screen Break';
+    appBig.textContent=`${fmt(60-m)}:00`;appSm.textContent='Handy frei';
+    ringArc.style.strokeDashoffset=CIRC*((m-50)/10);
+    appMsg.textContent=`Dein Rang: #${rank} von 800 · ${doneFocus} Fokus-Minuten.`;
+    appBtn.textContent=cyc<6?`Fokus ${cyc+2} um ${fmt(10+cyc)}:00`:'Ranking um 16:00';
+  }
+  appBtn.disabled=!focus;appBtn.style.opacity=focus?1:.55;
+}
+
+function frame(ts){
+  if(playing){
+    if(!lastTick)lastTick=ts;
+    const dt=ts-lastTick;lastTick=ts;
+    t+=dt/70; // 1 Minute ≈ 70 ms
+    if(t>=419){t=419;playing=false;playBtn.textContent='▶ Tag abspielen';}
+    const {m,focus}=state(t); if(!focus) meOut=false;
+  }
+  const off=draw();updateUI(off);
+  requestAnimationFrame(frame);
+}
+const playBtn=document.getElementById('play');
+playBtn.addEventListener('click',()=>{
+  if(t>=419)t=0;
+  playing=!playing;lastTick=0;
+  playBtn.textContent=playing?'❚❚ Pause':'▶ Tag abspielen';
+});
+inp.addEventListener('input',()=>{t=+inp.value;playing=false;playBtn.textContent='▶ Tag abspielen';if(!state(t).focus)meOut=false;});
+bars.addEventListener('click',e=>{const el=e.target.closest('[data-min]');if(el){t=+el.dataset.min+5;}});
+appBtn.addEventListener('click',()=>{if(state(t).focus)meOut=!meOut;});
+// Erste Darstellung: Bild sofort stabil
+seats.forEach(s=>{s.v=s.u<target(t)?1:0;});
+requestAnimationFrame(frame);
+})();
+</script>
